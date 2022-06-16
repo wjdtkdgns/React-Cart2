@@ -1,21 +1,16 @@
 import axios, { AxiosResponse } from "axios";
 import { useMutation, useQueryClient } from "react-query";
+import { tempCartType } from "../store/cartList";
 
-interface DataType {
-  id: number;
-  title: string;
-  content: string;
-  mode: string;
-}
-
-const fetching = (newData: DataType): Promise<AxiosResponse<DataType, any>> => {
-  if (newData.mode === "ADD") {
-    return axios.put<DataType>("../../cart.json", newData);
-  }
-  return axios.delete<DataType>("../../cart.json");
+const fetching = (
+  newData: tempCartType[]
+): Promise<AxiosResponse<tempCartType[], any>> => {
+  return axios.post("./cart.json", newData, {
+    headers: { "Content-Type": "application/json" },
+  });
 };
 
-export const useMutate = (props: any) => {
+export const useMutate = () => {
   const queryClient = useQueryClient();
   return useMutation(fetching, {
     onSuccess: () => {

@@ -1,20 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import KeepItems from "../component/KeepItems/KeepItems";
 import ListItems from "../component/ListItems/ListItems";
 import Layout from "../component/UI/Layout";
+import { useMutate } from "../hooks/useMutate";
+import { tempCartList } from "../store/cartList";
 
 interface Button {
   onClick: any;
 }
 
 const Cart = () => {
+  const tempCart = useRecoilValue(tempCartList);
   const navigate = useNavigate();
+
+  const { mutate } = useMutate();
 
   const ToCartHandler = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    navigate("/cart");
+
+    if (tempCart.length === 0) {
+      alert("empty cart");
+    } else {
+      mutate(tempCart);
+      navigate("/cart");
+    }
   };
 
   return (
