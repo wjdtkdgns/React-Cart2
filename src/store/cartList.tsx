@@ -1,16 +1,13 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
-export const cartList = atom({
-  key: "cartList",
+export interface tempCartType {
+  id: number;
+  quantity: number;
+  title: string;
+  content: string;
+}
+
+export const tempCartList = atom<tempCartType[]>({
+  key: "tempCartList",
   default: [],
 });
-
-// export const cartCount = selector({
-//   key: "cartCount",
-//   get: ({ get }) => {
-//     const data = get(cartList);
-//     let totalQuantity = 0;
-//     data.map((element) => (totalQuantity += element.quantity));
-//     return totalQuantity;
-//   },
-// });

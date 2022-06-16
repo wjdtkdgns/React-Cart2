@@ -14,6 +14,7 @@ const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: #fff;
+  box-sizing: border-box;
 
-  margin: 30px auto;
+  margin: 30px auto; ;
 `;

@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import { tempCartType } from "../../store/cartList";
 
-const CartItem = (data: { id: number; title: string; content: string }) => {
+const KeepItem = (data: tempCartType) => {
   return (
     <Box>
       <div>
         <p>{data.title}</p>
         <p>{data.content}</p>
       </div>
+      <div>
+        <p>quantity : {data.quantity}</p>
+      </div>
     </Box>
   );
 };
-export default CartItem;
+export default KeepItem;
 
 const Box = styled.div`
   width: 650px;
